@@ -57,10 +57,10 @@
 - (void)DrawGateRect:(CGRect)gateRect {
     gateRect = CGRectMake(150, 20, 500, 400);
     
-    CGColorSpaceRef myColorspace=CGColorSpaceCreateDeviceRGB();
+    CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
     size_t num_locations = 2;
     CGFloat locations[2] = { 1.0, 0.0 };
-    CGFloat components[8] =	{ 0.2, 0.2, 0.2, 1.0,    1.0, 1.0, 1.0, 1.0 };
+    CGFloat components[8] =	{ 0.2, 0.2, 0.2, 1.0, 1.0, 1.0, 1.0, 1.0 };
     
     CGGradientRef myGradient = CGGradientCreateWithColorComponents(myColorspace, components, locations, num_locations);
     

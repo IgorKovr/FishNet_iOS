@@ -9,11 +9,11 @@
 #import <CoreMotion/CoreMotion.h>
 #import "DragDot.h"
 
-#define gukKoef  0.5
-#define DotMass 3
+#define gukKoef 0.55
+#define DotMass 2
 #define iterations   5
 #define timerFrequency 30 //Hz
-#define indent 20
+#define indent 30
 
 @interface ViewController () {
     float GravityX;
@@ -27,6 +27,7 @@
 @property NSMutableArray *StaticDotsArray;
 @property UITapGestureRecognizer *doubleTapGesture;
 @property DragDot *lastTouchedDot;
+
 @end
 
 @implementation ViewController
@@ -61,10 +62,21 @@
     self.doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     self.doubleTapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:self.doubleTapGesture];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    } else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
 }
 
-- (BOOL)shouldAutorotate{
+- (BOOL)shouldAutorotate {
     return NO;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
